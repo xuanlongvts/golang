@@ -1,0 +1,1 @@
+1. run go fmt ./... to format all code in folder
