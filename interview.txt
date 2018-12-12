@@ -1,0 +1,12 @@
+1. 
+package main
+
+import "fmt"
+
+func main() {
+	if x := 42; x == 4 {
+		fmt.Println("x1 = ", x)
+	}
+
+	fmt.Println("x2 = ", x)
+}
