@@ -1,0 +1,3 @@
+The first time, we have to run below code
+
+go get golang.org/x/crypto/bcrypt
