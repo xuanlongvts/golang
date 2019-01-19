@@ -17,7 +17,7 @@ func f() {
 
 	fmt.Println("Call g")
 	g(0)
-	fmt.Println("Return from g() func")
+	fmt.Println("Return from g() func") //  not call
 }
 
 func g(i int) {
