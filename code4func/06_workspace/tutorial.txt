@@ -1,0 +1,14 @@
+1. pwd to show path and copy
+2. export GOPATH="string path"
+
+Example:
+    1. pwd will show `/Users/lelong/work/github/golang/code4func/06_workspace`
+    2. copy path `/Users/lelong/work/github/golang/code4func/06_workspace`
+    3. export GOPATH=/Users/lelong/work/github/golang/code4func/06_workspace
+    4. echo $GOPATH (to check again)
+
+
+function viet hoa chu cai dau tien la public, viet thuong la private
+
+* get package from github
+    go get github.com/jordan-wright/email
