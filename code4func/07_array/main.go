@@ -4,7 +4,7 @@ import "fmt"
 
 func main(){
 
-	// decal
+	// declation
 	var arrA [4]int
 
 	fmt.Println("arrA 1 = ", arrA)
