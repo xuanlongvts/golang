@@ -49,7 +49,7 @@ func main(){
 	fmt.Println("number 2 = ", number2, ", dest two = ", destTwo)
 
 	fmt.Println("==================================")
-	// 4. delete (golang not give api but use append is a trick
+	// 4. delete (golang not give api but use append is a trick)
 	var newSrc = append(src[:1], src[2:]...)
 	fmt.Println("new src = ", newSrc)
 }
