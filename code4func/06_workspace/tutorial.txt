@@ -1,3 +1,5 @@
+Source code phai nam trong thu muc src
+
 1. pwd to show path and copy
 2. export GOPATH="string path"
 
