@@ -1,0 +1,6 @@
+Command line
+
+1. Go env   to show information
+2. pwd      to show path of project (for copy link to set GOPATH)
+3. export GOPATH=/Users/lelong/work/github/golang/code4func/21_db_connect/conn_postgres
+4. export GOBIN=/Users/lelong/work/github/golang/code4func/21_db_connect/conn_postgres/bin
