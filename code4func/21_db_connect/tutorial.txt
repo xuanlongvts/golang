@@ -4,3 +4,28 @@ Command line
 2. pwd      to show path of project (for copy link to set GOPATH)
 3. export GOPATH=/Users/lelong/work/github/golang/code4func/21_db_connect/conn_postgres
 4. export GOBIN=/Users/lelong/work/github/golang/code4func/21_db_connect/conn_postgres/bin
+
+
+
+
+====================
+For MySQL (https://tableplus.com/blog/2018/11/how-to-download-mysql-mac.html)
+1. To install Homebrew, open Terminal and run:
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+2. Then install MySQL using Homebrew:
+    brew install mysql
+
+3. Install brew services:
+    brew tap homebrew/services 
+
+4. Load and start the MySQL service:
+    brew services start mysql 
+
+    Expected output: Successfully started mysql (label: homebrew.mxcl.mysql)
+    Open Terminal and execute the following command to set the root password:
+
+5. set password for admin
+    mysqladmin -u root password 'yourpassword'
+
+    Now your MySQL server is ready.
