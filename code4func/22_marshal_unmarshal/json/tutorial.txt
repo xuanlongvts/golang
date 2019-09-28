@@ -1,0 +1,6 @@
+*** json.Marshal() method help to convert Struct into Byte data, This method takes object as a param and returned Bytes code.
+We will create simple employee struct, that have name, age and salary property.
+
+*** json.Unmarshal() method help to convert json(Byte data) into Struct Object, This method takes json byte data as a param and returned struct object. I am using same above json
+string and convert into byte data, Finally convert json byte data into Employee struct.The Employee struct have Name, Age and Salary property.
+The string keys in the JSON are matched to the field names in the structs.
