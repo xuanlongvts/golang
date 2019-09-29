@@ -30,7 +30,7 @@ func main() {
 /*
 	There are two ways for test
 
-	1. go run -race main.go
+	1. go run -race twoContext.go
 	2. go build -race
 		2.1 run ./03     to test
 */

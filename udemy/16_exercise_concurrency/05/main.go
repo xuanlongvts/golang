@@ -27,4 +27,4 @@ func main() {
 	fmt.Println("End counter:", counter)
 }
 
-// go run -race main.go
+// go run -race twoContext.go
