@@ -6,6 +6,35 @@ Command line
 4. export GOBIN=/Users/lelong/work/github/golang/code4func/21_db_connect/conn_postgres/bin
 
 
+https://tableplus.com/blog/2018/10/how-to-start-stop-restart-postgresql-server.html
+
+If you want a hassle-free way to manage the local PostgreSQL database servers, use DBngin. It’s just one click to start, another click to turn off.
+No dependencies, no command line required, multiple drivers, multiple versions and multiple ports. And it’s free.
+
+
+
+
+
+
+====================
+For postgres
+
+*** if show error message: could not connect to server: Connection refused Is the server running on host "localhost" (127.0.0.1) and accepting TCP/IP connections on port 5432?
+1. brew install postgres
+2. brew services start postgresql  or  brew services stop postgresql
+
+*** if show psql: FATAL: role “USERNAME” does not exist
+1. createuser postgres --interactive    or      createuser postgres -s
+
+
+
+====================
+For MongoDB
+1. brew tap mongodb/brew
+2. brew install mongodb-community@4.2
+3. brew services start mongodb-community@4.2
+
+
 
 
 ====================

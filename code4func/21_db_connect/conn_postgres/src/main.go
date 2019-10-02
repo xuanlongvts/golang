@@ -32,10 +32,10 @@ func main() {
 	defer db.Close()
 
 	fmt.Println("# Insert values")
-	//var lastInsertId int
-	//err = db.QueryRow("INSERT INTO users(id, name, gender, email) VALUES($1, $2, $3, $4)", "9", "Lê Quang Định", "Male", "lqd@gmail.com").Scan(&lastInsertId)
-	//checkErr(err)
-	//fmt.Println("last insert id = ", lastInsertId)
+	var lastInsertId int
+	err = db.QueryRow("INSERT INTO users(id, name, gender, email) VALUES($1, $2, $3, $4)", "9", "Lê Quang Định", "Male", "lqd@gmail.com").Scan(&lastInsertId)
+	checkErr(err)
+	fmt.Println("last insert id = ", lastInsertId)
 
 	fmt.Println("# Updating")
 	stmt, err := db.Prepare("update users set name=$1 where id=$2")
