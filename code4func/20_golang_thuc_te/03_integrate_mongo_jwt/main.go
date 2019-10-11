@@ -1,37 +1,25 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"log"
-
-	//"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go-jwt/driver"
+	"go-jwt/config"
+	models "go-jwt/model"
+	repoImpl "go-jwt/repository/repoimpl"
 )
 
-type Trainer struct {
-	Name string
-	Age  int
-	City string
-}
-
 func main() {
+	fmt.Println("JWT")
+	mongo := driver.ConnectMongoDB()
 
-	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-
-	// Connect to MongoDB
-	client, err := mongo.Connect(context.TODO(), clientOptions)
-	if err != nil {
-		log.Fatal(err)
+	userRepo := repoImpl.NewUserRepo(mongo.Client.Database(config.DB_NAME))
+	user := models.User{
+		Email: "nongno@gmail.com",
+		Password: "123456",
+		DisplayName: "nongno",
 	}
-
-	// Check the connection
-	err = client.Ping(context.TODO(), nil)
-	if err != nil {
-		log.Fatal(err)
+	err := userRepo.Insert(user)
+	if err == nil {
+		fmt.Println("Insert ok")
 	}
-
-	fmt.Println("Connected to MongoDB!")
 }

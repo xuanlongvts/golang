@@ -16,7 +16,7 @@ type Student struct{
 
 // 1. Value receiver
 /*
-	Khi su dung value receiver thi olang se copy cai struct truyen vao thanh mot struct moi nen co dia chi khac nhau, va su dung gia tri copy do de thao tac data,
+	Khi su dung value receiver thi golang se copy cai struct truyen vao thanh mot struct moi nen co dia chi khac nhau, va su dung gia tri copy do de thao tac data,
 	nen khong lam thay doi gia tri goc
 */
 func (s Student) getName() string{

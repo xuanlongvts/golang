@@ -1,0 +1,5 @@
+1. go mod init [nameModule]     (nameModule is any name that You set) will create file go.mod
+2. go build     (will scan and download package from internet and build file run of OS)
+3. ./nameModule     (to run file build)
+4. go mod vendor    (will create folder vendor to list all package that download)
+5. go mod graph     (will list all package that we use)
