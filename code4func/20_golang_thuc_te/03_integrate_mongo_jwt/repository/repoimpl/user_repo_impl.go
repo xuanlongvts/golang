@@ -27,3 +27,27 @@ func (mongo *UserRepoImpl) Insert(user models.User) error {
 	}
 	return nil
 }
+
+func (mongo *UserRepoImpl) FindUserByEmail(email string) (models.User, error) {
+	user := models.User{}
+	result := mongo.Db.Collection("users").FindOne(context.Background(), bson.M{"email": email})
+	err := result.Decode(&user)
+
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
+func (mongo *UserRepoImpl) CheckLoginInfo(email, password string) (models.User, error) {
+	user := models.User{}
+	result := mongo.Db.Collection("users").FindOne(context.Background(), bson.M{
+		"email": email,
+		"password": password,
+	})
+	err := result.Decode(&user)
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}
