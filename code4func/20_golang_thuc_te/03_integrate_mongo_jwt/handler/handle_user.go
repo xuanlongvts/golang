@@ -29,9 +29,10 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		ResponseErr(w, http.StatusBadRequest)
 		return
 	}
-	_, err = repoImpl.NewUserRepo(driver.Mongo.Client.Database(config.DB_NAME)).FindUserByEmail(regData.Email)
-	fmt.Println("err =", err)
-	if err != models.ERR_USER_NOT_FOUND {
+	findUserExist, err := repoImpl.NewUserRepo(driver.Mongo.Client.Database(config.DB_NAME)).FindUserByEmail(regData.Email)
+	fmt.Println("findUserExist =", findUserExist.Email)
+	fmt.Println("err = ", err)
+	if findUserExist.Email == regData.Email {
 		ResponseErr(w, http.StatusConflict)
 		return
 	}
