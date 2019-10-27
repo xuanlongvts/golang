@@ -35,6 +35,8 @@ func main() {
 
 	driver.ConnectMongoDB()
 	http.HandleFunc("/register", handler.Register)
+	http.HandleFunc("/login", handler.Login)
+	http.HandleFunc("/user", handler.GetUser)
 
 	fmt.Println("Server running [:8000]")
 	http.ListenAndServe(":8000", nil)
