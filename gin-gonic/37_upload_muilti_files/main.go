@@ -38,3 +38,5 @@ func main() {
 
 	r.Run()
 }
+
+// run with http://localhost:8080
