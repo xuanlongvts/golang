@@ -15,7 +15,7 @@ input UserInput {
 type Mutation {
     createUser(input: UserInput!): User!
     updateUser(input: UserInput!): User!
-    deleteUser(userId: ID!) Boolean!
+    deleteUser(userId: ID!): Boolean!
 }
 
 # Define queries here
