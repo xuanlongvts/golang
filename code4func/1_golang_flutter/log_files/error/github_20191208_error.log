@@ -1,0 +1,3 @@
+time="2019-12-08T12:06:36.044397+07:00" level=error msg="Error happened " file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/main.go line=28
+time="2019-12-08T12:52:26.224577+07:00" level=error msg="Error happened " file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/main.go line=36
+time="2019-12-08T12:53:18.874813+07:00" level=error msg="sql: no rows in result set" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/main.go line=32
