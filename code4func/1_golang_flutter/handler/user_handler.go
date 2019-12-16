@@ -50,12 +50,12 @@ func (U *UserHandler) HandleSignUp(c echo.Context) error {
 	}
 
 	dataCollection := model.User{
-		UserId:    userId.String(),
-		FullName:  req.FullName,
-		Email:     req.Email,
-		Password:  hash,
-		Role:      role,
-		Token:     "",
+		UserId:   userId.String(),
+		FullName: req.FullName,
+		Email:    req.Email,
+		Password: hash,
+		Role:     role,
+		Token:    "",
 	}
 
 	user, err := U.UserRepo.SaveUser(c.Request().Context(), dataCollection)
@@ -67,7 +67,17 @@ func (U *UserHandler) HandleSignUp(c echo.Context) error {
 		})
 	}
 
-	user.Password = ""
+	// gen token
+	token, err := security.GenToken(user)
+	if err != nil {
+		log.Error(err.Error())
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+	user.Token = token
 	return c.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,
 		Message:    "Signup success",
@@ -115,9 +125,25 @@ func (U *UserHandler) HandleSignIn(c echo.Context) error {
 		})
 	}
 
+	// gen token
+	token, err := security.GenToken(user)
+	if err != nil {
+		log.Error(err.Error())
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	user.Token = token
 	return c.JSON(http.StatusOK, model.Response{
 		StatusCode: http.StatusOK,
 		Message:    "Singin success",
 		Data:       user,
 	})
+}
+
+func (U *UserHandler) Profile(c echo.Context) error {
+	return c.String(http.StatusOK, "Profile success")
 }

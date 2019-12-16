@@ -10,3 +10,6 @@ time="2019-12-15T13:21:42.260242+07:00" level=error msg="pq: duplicate key value
 time="2019-12-15T19:03:50.865104+07:00" level=error msg="pq: duplicate key value violates unique constraint \"users_email_key\"" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/repository/repo_impl/user_repo_impl.go line=32
 time="2019-12-15T19:04:49.277199+07:00" level=error msg="pq: duplicate key value violates unique constraint \"users_email_key\"" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/repository/repo_impl/user_repo_impl.go line=32
 time="2019-12-15T20:54:51.494275+07:00" level=error msg="User not found" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=101
+time="2019-12-15T21:32:23.111787+07:00" level=error msg="code=400, message=EOF" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=81
+time="2019-12-15T21:40:11.066994+07:00" level=error msg="code=400, message=EOF" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=81
+time="2019-12-15T21:40:54.072495+07:00" level=error msg="code=400, message=EOF" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=81

@@ -2,9 +2,9 @@ package repo_impl
 
 import (
 	"backend_github_trending/db"
+	"backend_github_trending/errMess"
 	"backend_github_trending/log"
 	"backend_github_trending/model"
-	"backend_github_trending/errMess"
 	"backend_github_trending/model/req"
 	"backend_github_trending/repository"
 	"context"
@@ -18,7 +18,7 @@ type UserRepoImpl struct {
 }
 
 func NewUserRepo(sql *db.Sql) repository.UserRepo {
-	return &UserRepoImpl{sql:sql}
+	return &UserRepoImpl{sql: sql}
 }
 
 func (u *UserRepoImpl) SaveUser(context context.Context, user model.User) (model.User, error) {
