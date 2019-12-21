@@ -6,7 +6,6 @@ import (
 	"backend_github_trending/model/req"
 	"backend_github_trending/repository"
 	"backend_github_trending/security"
-	validator "github.com/go-playground/validator/v10"
 	uuid "github.com/google/uuid"
 	"github.com/labstack/echo"
 	"net/http"
@@ -27,8 +26,7 @@ func (U *UserHandler) HandleSignUp(c echo.Context) error {
 		})
 	}
 
-	validate := validator.New()
-	if err := validate.Struct(req); err != nil {
+	if err := c.Validate(req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, model.Response{
 			StatusCode: http.StatusBadRequest,
@@ -96,8 +94,7 @@ func (U *UserHandler) HandleSignIn(c echo.Context) error {
 		})
 	}
 
-	validate := validator.New()
-	if err := validate.Struct(req); err != nil {
+	if err := c.Validate(req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, model.Response{
 			StatusCode: http.StatusBadRequest,

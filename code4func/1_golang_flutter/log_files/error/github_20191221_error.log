@@ -1,0 +1,17 @@
+time="2019-12-21T13:47:14.573968+07:00" level=error msg="validator not registered" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=98
+time="2019-12-21T16:08:56.394848+07:00" level=error msg="Mật khẩu tối thiểu 8 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:09:09.994501+07:00" level=error msg="Email không hợp lệ \n Mật khẩu tối thiểu 8 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:10:33.621664+07:00" level=error msg="Mật khẩu tối thiểu 8 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:14:47.051471+07:00" level=error msg="Mật khẩu tối thiểu 8 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:15:44.547028+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:15:59.942538+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:16:10.285773+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:25:22.328617+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:25:32.489066+07:00" level=error msg="Email là bắt buộc" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=100
+time="2019-12-21T16:31:01.595052+07:00" level=error msg="pq: duplicate key value violates unique constraint \"users_email_key\"" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/repository/repo_impl/user_repo_impl.go line=34
+time="2019-12-21T16:31:15.784657+07:00" level=error msg="pq: duplicate key value violates unique constraint \"users_email_key\"" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/repository/repo_impl/user_repo_impl.go line=34
+time="2019-12-21T16:31:44.022901+07:00" level=error msg="Key: 'ReqSignup.Email' Error:Field validation for 'Email' failed on the 'required' tag" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=32
+time="2019-12-21T16:32:38.763883+07:00" level=error msg="Key: 'ReqSignup.Email' Error:Field validation for 'Email' failed on the 'email' tag" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=32
+time="2019-12-21T16:39:26.181209+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=30
+time="2019-12-21T16:39:41.680003+07:00" level=error msg="Email là bắt buộc \n Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=30
+time="2019-12-21T16:39:53.268601+07:00" level=error msg="Mật khẩu tối thiểu 6 ký tự" file=/Users/lelong/work/github/golang/code4func/1_golang_flutter/handler/user_handler.go line=30

@@ -6,6 +6,7 @@ import (
 	"backend_github_trending/log"
 	"backend_github_trending/repository/repo_impl"
 	"backend_github_trending/router"
+	"backend_github_trending/helper"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"os"
@@ -30,6 +31,10 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.AddTrailingSlash())
+
+	structValidator := helper.NewStructValidator()
+	structValidator.RegisterValidate()
+	e.Validator = structValidator
 
 	userHandler := handler.UserHandler{UserRepo: repo_impl.NewUserRepo(sql)}
 
