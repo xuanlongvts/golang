@@ -1,11 +1,13 @@
 package handler
 
 import (
+	"backend_github_trending/errMess"
 	"backend_github_trending/log"
 	"backend_github_trending/model"
 	"backend_github_trending/model/req"
 	"backend_github_trending/repository"
 	"backend_github_trending/security"
+	"github.com/dgrijalva/jwt-go"
 	uuid "github.com/google/uuid"
 	"github.com/labstack/echo"
 	"net/http"
@@ -142,5 +144,29 @@ func (U *UserHandler) HandleSignIn(c echo.Context) error {
 }
 
 func (U *UserHandler) Profile(c echo.Context) error {
-	return c.String(http.StatusOK, "Profile success")
+	tokenData := c.Get("user").(*jwt.Token)
+	claims := tokenData.Claims.(*model.JwtCustomClaims)
+
+	user, err := U.UserRepo.SelectUserById(c.Request().Context(), claims.UserId)
+	if err != nil {
+		if err == errMess.UserNotFound {
+			return c.JSON(http.StatusNotFound, model.Response{
+				StatusCode: http.StatusNotFound,
+				Message:    err.Error(),
+				Data:       nil,
+			})
+		}
+
+		return c.JSON(http.StatusInternalServerError, model.Response{
+			StatusCode: http.StatusInternalServerError,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Get Profile api success",
+		Data:       user,
+	})
 }
