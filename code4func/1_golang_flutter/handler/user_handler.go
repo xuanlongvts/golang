@@ -170,3 +170,42 @@ func (U *UserHandler) Profile(c echo.Context) error {
 		Data:       user,
 	})
 }
+
+func (U *UserHandler) UpdateProfile(c echo.Context) error {
+	req := req.ReqUpdateUser{}
+	if err := c.Bind(&req); err != nil {
+		return err
+	}
+
+	err := c.Validate(req)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, model.Response{
+			StatusCode: http.StatusBadRequest,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+
+	token := c.Get("user").(*jwt.Token)
+	claims := token.Claims.(*model.JwtCustomClaims)
+	user := model.User{
+		UserId:    claims.UserId,
+		FullName:  req.FullName,
+		Email:     req.Email,
+	}
+
+	user, err = U.UserRepo.UpdateUser(c.Request().Context(), user)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, model.Response{
+			StatusCode: http.StatusUnprocessableEntity,
+			Message:    err.Error(),
+			Data:       nil,
+		})
+	}
+	
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Cập nhật user thành công",
+		Data:       user,
+	})
+}
