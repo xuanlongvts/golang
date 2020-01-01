@@ -3,12 +3,11 @@ package main
 import (
 	"backend_github_trending/db"
 	"backend_github_trending/handler"
+	"backend_github_trending/helper"
 	"backend_github_trending/log"
 	"backend_github_trending/repository/repo_impl"
 	"backend_github_trending/router"
-	"backend_github_trending/helper"
 	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
 	"os"
 )
 
@@ -30,7 +29,7 @@ func main() {
 	defer sql.Close()
 
 	e := echo.New()
-	e.Use(middleware.AddTrailingSlash())
+	//e.Use(middleware.AddTrailingSlash())
 
 	structValidator := helper.NewStructValidator()
 	structValidator.RegisterValidate()
