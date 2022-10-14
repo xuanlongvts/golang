@@ -14,7 +14,7 @@ import (
 	3. int int8 int16 int32 int64 (so nguyen)
 		3.1 uint uint8 uint16 uint32 uint64 (so nguyen duong)
 	4. byte (alias for uint8)
-	5. rune (alias for uint32) represents a Unicode code point
+	5. rune (alias for int32) represents a Unicode code point
 	6. float32, float64 (so thuc)
 	7. complex64, complex128 (so phuc)
 */
