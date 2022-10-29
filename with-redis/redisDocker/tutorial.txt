@@ -1,0 +1,14 @@
+1. create Dockerfile
+    FROM redis:latest
+
+2. Build to image:
+    docker build -t redis-golang .
+
+3. Check image succeed,
+    docker images
+
+4. Run image
+    docker run --name redis-golang -p 6379:6379 -d redis-golang
+
+5. Check container succeed
+    docker ps

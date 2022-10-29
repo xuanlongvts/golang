@@ -1,0 +1,4 @@
+1. run: ---> docker build -t golang-redis-docker .
+
+2. run: ---> docker run --name golang-redis-docker -p 8100:8100 -h 0.0.0.0 golang-redis-docker
+
