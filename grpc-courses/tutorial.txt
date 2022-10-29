@@ -1,0 +1,14 @@
+--------- issuse start ---------
+protoc calculatorpb/*.proto --go_out=plugins=grpc:.
+protoc-gen-go: program not found or is not executable
+Please specify a program using absolute path or make sure the program is available in your PATH system variable
+--go_out: protoc-gen-go: Plugin failed with status code 1.
+make: *** [gen_proto] Error 1
+--------- issuse end ---------
+
+Resolve:
+1. nano ~/.zshrc
+
+2. 
+    export PATH=$PATH:$HOME/go/bin, in order to add the GOPATH and
+    export PATH=$PATH:/usr/local/go/bin, in order to add GOROOT
