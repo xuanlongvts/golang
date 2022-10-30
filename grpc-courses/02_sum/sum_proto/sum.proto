@@ -4,24 +4,38 @@ option go_package = "sum_proto/";
 
 package sumTowNumber;
 
+// ------ start Sum (Unary)
 message SumRequest {
     int32 num1 = 1;
     int32 num2 = 2;
 }
-
 message SumResponse {
     int32 result = 1;
 }
+// ------------> End Sum
 
+// ------ start Prime Number Decoposition (Server streaming)
 message PndRequest {
     int32 number = 1;
 }
-
 message PndResponse {
     int32 result = 2;
 }
+// ------------> End Prime Number Decoposition
+
+// ------ start Average (Client streaming)
+message AverageRequest {
+    float num = 1;
+}
+message AverageResponse {
+    float result = 1;
+}
+// ------------> End Average
+
+
 
 service CalculatorService {
     rpc Sum(SumRequest) returns (SumResponse) {}
     rpc PrimeNumberDecomposition(PndRequest) returns (stream PndResponse) {}
+    rpc Average(stream AverageRequest) returns (AverageResponse) {}
 }

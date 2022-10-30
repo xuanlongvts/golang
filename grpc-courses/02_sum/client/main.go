@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"time"
@@ -38,8 +39,13 @@ func main() {
 	cli1 := pb.NewCalculatorServiceClient(conn)
 	total(cli1)
 
+	fmt.Println("---------------------------")
 	cli2 := pb.NewCalculatorServiceClient(conn)
 	callPnd(cli2)
+
+	fmt.Println("---------------------------")
+	cli3 := pb.NewCalculatorServiceClient(conn)
+	callAverage(cli3)
 }
 
 func total(client pb.CalculatorServiceClient) {
@@ -75,4 +81,40 @@ func callPnd(client pb.CalculatorServiceClient) {
 
 		log.Printf("Prime number %v", result.GetResult())
 	}
+}
+
+func callAverage(client pb.CalculatorServiceClient) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	stream, err := client.Average(ctx)
+	if err != nil {
+		log.Fatalf("Call average err %v", err)
+	}
+	listReq := []pb.AverageRequest{
+		pb.AverageRequest{
+			Num: 5,
+		},
+		pb.AverageRequest{
+			Num: 2,
+		},
+		pb.AverageRequest{
+			Num: 3.5,
+		},
+		pb.AverageRequest{
+			Num: 1.5,
+		},
+	}
+	for _, val := range listReq {
+		err := stream.Send(&val)
+		if err != nil {
+			log.Fatalf("send avarage request err %v", err)
+		}
+		time.Sleep(time.Second)
+	}
+
+	resp, err := stream.CloseAndRecv()
+	if err != nil {
+		log.Fatalf("Receive average response err %v", err)
+	}
+	log.Printf("Average response total: %+v", resp)
 }

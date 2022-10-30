@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"time"
@@ -22,6 +23,7 @@ type server struct {
 }
 
 func (ser *server) Sum(ctx context.Context, in *pb.SumRequest) (*pb.SumResponse, error) {
+	fmt.Println("Unary ---------------------------")
 	log.Printf("Received, num1: %v, num2: %v", in.GetNum1(), in.GetNum2())
 	return &pb.SumResponse{
 		Result: in.GetNum1() + in.GetNum2(),
@@ -29,6 +31,7 @@ func (ser *server) Sum(ctx context.Context, in *pb.SumRequest) (*pb.SumResponse,
 }
 
 func (ser *server) PrimeNumberDecomposition(req *pb.PndRequest, stream pb.CalculatorService_PrimeNumberDecompositionServer) error {
+	fmt.Println("Server streaming ---------------------------")
 	K := int32(2)
 	N := req.GetNumber()
 	for N > 1 {
@@ -44,6 +47,31 @@ func (ser *server) PrimeNumberDecomposition(req *pb.PndRequest, stream pb.Calcul
 			log.Printf("K increase to %v", K)
 		}
 	}
+	return nil
+}
+
+func (ser *server) Average(stream pb.CalculatorService_AverageServer) error {
+	fmt.Println("Client streaming ---------------------------")
+	var total float32
+	var count int
+
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			resp := &pb.AverageResponse{
+				Result: total / float32(count),
+			}
+			return stream.SendAndClose(resp)
+		}
+		if err != nil {
+			log.Fatalf("Erro while Recv Average %v", err)
+			return err
+		}
+		log.Printf("receive request %+v \n", req)
+		total += req.GetNum()
+		count++
+	}
+
 	return nil
 }
 
