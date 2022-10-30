@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	pb "mod-sum/sum_proto"
 
@@ -25,6 +26,25 @@ func (ser *server) Sum(ctx context.Context, in *pb.SumRequest) (*pb.SumResponse,
 	return &pb.SumResponse{
 		Result: in.GetNum1() + in.GetNum2(),
 	}, nil
+}
+
+func (ser *server) PrimeNumberDecomposition(req *pb.PndRequest, stream pb.CalculatorService_PrimeNumberDecompositionServer) error {
+	K := int32(2)
+	N := req.GetNumber()
+	for N > 1 {
+		if N%K == 0 {
+			N = N / K
+			// send to client
+			stream.Send(&pb.PndResponse{
+				Result: K,
+			})
+			time.Sleep(time.Second)
+		} else {
+			K++
+			log.Printf("K increase to %v", K)
+		}
+	}
+	return nil
 }
 
 func main() {

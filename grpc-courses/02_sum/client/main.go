@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"io"
 	"log"
 	"time"
 
@@ -13,14 +14,16 @@ import (
 )
 
 const (
-	defaultNum1 = 1
-	defaultNum2 = 2
+	defaultNum1   = 1
+	defaultNum2   = 2
+	defaultNumPnd = 120
 )
 
 var (
-	addr = flag.String("addr", "localhost:50051", "the address to connnect to")
-	num1 = flag.Int("num1", defaultNum1, "interger one")
-	num2 = flag.Int("num2", defaultNum2, "interger two")
+	addr   = flag.String("addr", "localhost:50051", "the address to connnect to")
+	num1   = flag.Int("num1", defaultNum1, "interger one")
+	num2   = flag.Int("num2", defaultNum2, "interger two")
+	numPnd = flag.Int("numPnd", defaultNumPnd, "interger Prime Number")
 )
 
 func main() {
@@ -32,10 +35,17 @@ func main() {
 	}
 	defer conn.Close()
 
-	cli := pb.NewCalculatorServiceClient(conn)
+	cli1 := pb.NewCalculatorServiceClient(conn)
+	total(cli1)
+
+	cli2 := pb.NewCalculatorServiceClient(conn)
+	callPnd(cli2)
+}
+
+func total(client pb.CalculatorServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	result, err := cli.Sum(ctx, &pb.SumRequest{
+	result, err := client.Sum(ctx, &pb.SumRequest{
 		Num1: int32(*num1),
 		Num2: int32((*num2)),
 	})
@@ -43,4 +53,26 @@ func main() {
 		log.Fatalf("Could not sum: %v", err)
 	}
 	log.Printf("Total: %v", result.GetResult())
+}
+
+func callPnd(client pb.CalculatorServiceClient) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	stream, err := client.PrimeNumberDecomposition(ctx, &pb.PndRequest{
+		Number: int32(*numPnd),
+	})
+	if err != nil {
+		log.Fatalf("call Prime Number Decomposition %v", err)
+	}
+
+	for {
+		result, err := stream.Recv()
+		// EOF = End Of File (Server had sent done)
+		if err == io.EOF {
+			log.Println("Server finish streaming")
+			return
+		}
+
+		log.Printf("Prime number %v", result.GetResult())
+	}
 }
