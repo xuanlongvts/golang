@@ -75,6 +75,35 @@ func (ser *server) Average(stream pb.CalculatorService_AverageServer) error {
 	return nil
 }
 
+func (ser *server) FindMax(stream pb.CalculatorService_FindMaxServer) error {
+	fmt.Println("Bi Directional streaming ---------------------------")
+	var max int32 = int32(0)
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			log.Println("EOF...")
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("Error while receive FindMax %v", err)
+			return err
+		}
+		num := req.GetNum()
+		log.Printf("Recv num %v\n", num)
+		if num > max {
+			max = num
+		}
+		err = stream.Send(&pb.FindMaxResponse{
+			Max: max,
+		})
+		if err != nil {
+			log.Fatalf("send max err %v", err)
+			return err
+		}
+	}
+	return nil
+}
+
 func main() {
 	flag.Parse()
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))

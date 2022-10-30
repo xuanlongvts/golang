@@ -46,6 +46,10 @@ func main() {
 	fmt.Println("---------------------------")
 	cli3 := pb.NewCalculatorServiceClient(conn)
 	callAverage(cli3)
+
+	fmt.Println("---------------------------")
+	cli4 := pb.NewCalculatorServiceClient(conn)
+	callFindMax(cli4)
 }
 
 func total(client pb.CalculatorServiceClient) {
@@ -117,4 +121,61 @@ func callAverage(client pb.CalculatorServiceClient) {
 		log.Fatalf("Receive average response err %v", err)
 	}
 	log.Printf("Average response total: %+v", resp)
+}
+
+func callFindMax(client pb.CalculatorServiceClient) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	stream, err := client.FindMax(ctx)
+	if err != nil {
+		log.Fatalf("Call FindMax err %v", err)
+	}
+
+	waitC := make(chan struct{})
+	go func() {
+		listReq := []pb.FindMaxRequest{
+			pb.FindMaxRequest{
+				Num: 5,
+			},
+			pb.FindMaxRequest{
+				Num: 15,
+			},
+			pb.FindMaxRequest{
+				Num: 12,
+			},
+			pb.FindMaxRequest{
+				Num: 3,
+			},
+			pb.FindMaxRequest{
+				Num: 35,
+			},
+		}
+		for _, val := range listReq {
+			err := stream.Send(&val)
+			if err != nil {
+				log.Fatalf("send find max request err %v", err)
+				break
+			}
+			time.Sleep(time.Second)
+		}
+		stream.CloseSend()
+	}()
+
+	go func() {
+		for {
+			resp, err := stream.Recv()
+			if err == io.EOF {
+				log.Println("ending find max api ...")
+				break
+			}
+			if err != nil {
+				log.Fatalf("recv find max err %v", err)
+				break
+			}
+			log.Printf("max: %v\n", resp.GetMax())
+		}
+		close(waitC)
+	}()
+
+	<-waitC
 }

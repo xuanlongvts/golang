@@ -32,10 +32,18 @@ message AverageResponse {
 }
 // ------------> End Average
 
-
+// ------ start FindMax (Bi Directional streaming)
+message FindMaxRequest {
+    int32 num = 1;
+}
+message FindMaxResponse {
+    int32 max = 1;
+}
+// ------------> End FindMax
 
 service CalculatorService {
     rpc Sum(SumRequest) returns (SumResponse) {}
     rpc PrimeNumberDecomposition(PndRequest) returns (stream PndResponse) {}
     rpc Average(stream AverageRequest) returns (AverageResponse) {}
+    rpc FindMax(stream FindMaxRequest) returns (stream FindMaxResponse) {}
 }
