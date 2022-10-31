@@ -8,6 +8,9 @@ import (
 	"log"
 	"time"
 
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
@@ -15,16 +18,18 @@ import (
 )
 
 const (
-	defaultNum1   = 1
-	defaultNum2   = 2
-	defaultNumPnd = 120
+	defaultNum1      = 1
+	defaultNum2      = 2
+	defaultNumPnd    = 120
+	defaultNumSquare = 4
 )
 
 var (
-	addr   = flag.String("addr", "localhost:50051", "the address to connnect to")
-	num1   = flag.Int("num1", defaultNum1, "interger one")
-	num2   = flag.Int("num2", defaultNum2, "interger two")
-	numPnd = flag.Int("numPnd", defaultNumPnd, "interger Prime Number")
+	addr      = flag.String("addr", "localhost:50051", "the address to connnect to")
+	num1      = flag.Int("num1", defaultNum1, "interger one")
+	num2      = flag.Int("num2", defaultNum2, "interger two")
+	numPnd    = flag.Int("numPnd", defaultNumPnd, "interger Prime Number")
+	numSquare = flag.Int("numSquare", defaultNumSquare, "interger number square")
 )
 
 func main() {
@@ -50,6 +55,10 @@ func main() {
 	fmt.Println("---------------------------")
 	cli4 := pb.NewCalculatorServiceClient(conn)
 	callFindMax(cli4)
+
+	fmt.Println("---------------------------")
+	cli5 := pb.NewCalculatorServiceClient(conn)
+	callSquareRoot(cli5, int32(*numSquare))
 }
 
 func total(client pb.CalculatorServiceClient) {
@@ -178,4 +187,25 @@ func callFindMax(client pb.CalculatorServiceClient) {
 	}()
 
 	<-waitC
+}
+
+func callSquareRoot(client pb.CalculatorServiceClient, num int32) {
+	resp, err := client.Square(context.Background(), &pb.SquareRequest{
+		Num: num,
+	})
+
+	if err != nil {
+		fmt.Println("Call square root api err: ", err)
+
+		if errStatus, ok := status.FromError(err); ok {
+			fmt.Println("err msg: ", errStatus.Message())
+			fmt.Println("err code: ", errStatus.Code())
+
+			if errStatus.Code() == codes.InvalidArgument {
+				fmt.Println("InvalidArgument num ", num)
+				return
+			}
+		}
+	}
+	log.Printf("Square root response: %v\n\n", resp.GetSquareRoot())
 }

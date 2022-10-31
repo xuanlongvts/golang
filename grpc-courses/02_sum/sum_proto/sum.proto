@@ -41,9 +41,20 @@ message FindMaxResponse {
 }
 // ------------> End FindMax
 
+/* ---------- start Error handler Demo ----------*/
+message SquareRequest {
+    int32 num = 1;
+}
+message SquareResponse {
+    double squareRoot = 1;
+}
+/* ---------- End Error handler Demo ----------*/
+
 service CalculatorService {
     rpc Sum(SumRequest) returns (SumResponse) {}
+    rpc SumWithDealine(SumRequest) returns (SumResponse) {}
     rpc PrimeNumberDecomposition(PndRequest) returns (stream PndResponse) {}
     rpc Average(stream AverageRequest) returns (AverageResponse) {}
     rpc FindMax(stream FindMaxRequest) returns (stream FindMaxResponse) {}
+    rpc Square(SquareRequest) returns (SquareResponse) {} // Error handle
 }

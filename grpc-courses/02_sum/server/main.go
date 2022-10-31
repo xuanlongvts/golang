@@ -6,8 +6,12 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"net"
 	"time"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	pb "mod-sum/sum_proto"
 
@@ -102,6 +106,20 @@ func (ser *server) FindMax(stream pb.CalculatorService_FindMaxServer) error {
 		}
 	}
 	return nil
+}
+
+func (ser *server) Square(ctx context.Context, req *pb.SquareRequest) (*pb.SquareResponse, error) {
+	fmt.Println("Square called ---------------------------")
+	num := req.GetNum()
+
+	if num < 0 {
+		log.Printf("number <= 0, num = %v ---> InvalidArgument ", num)
+		return nil, status.Errorf(codes.InvalidArgument, "Expect number > 0, request number was: %v", num)
+	}
+
+	return &pb.SquareResponse{
+		SquareRoot: math.Sqrt(float64(num)),
+	}, nil
 }
 
 func main() {
