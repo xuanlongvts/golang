@@ -34,6 +34,22 @@ func (ser *server) Sum(ctx context.Context, in *pb.SumRequest) (*pb.SumResponse,
 	}, nil
 }
 
+func (ser *server) SumWithDealine(ctx context.Context, in *pb.SumRequest) (*pb.SumResponse, error) {
+	fmt.Println("Deadline timeout ---------------------------")
+
+	for i := 0; i < 3; i++ {
+		if ctx.Err() == context.Canceled {
+			log.Println("Context.Canceled...")
+			return nil, status.Error(codes.Canceled, "Client canceled request")
+		}
+		time.Sleep(time.Second)
+	}
+
+	return &pb.SumResponse{
+		Result: in.GetNum1() + in.GetNum2(),
+	}, nil
+}
+
 func (ser *server) PrimeNumberDecomposition(req *pb.PndRequest, stream pb.CalculatorService_PrimeNumberDecompositionServer) error {
 	fmt.Println("Server streaming ---------------------------")
 	K := int32(2)

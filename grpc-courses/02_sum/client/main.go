@@ -22,14 +22,16 @@ const (
 	defaultNum2      = 2
 	defaultNumPnd    = 120
 	defaultNumSquare = 4
+	defaultTimeOut   = 1
 )
 
 var (
-	addr      = flag.String("addr", "localhost:50051", "the address to connnect to")
-	num1      = flag.Int("num1", defaultNum1, "interger one")
-	num2      = flag.Int("num2", defaultNum2, "interger two")
-	numPnd    = flag.Int("numPnd", defaultNumPnd, "interger Prime Number")
-	numSquare = flag.Int("numSquare", defaultNumSquare, "interger number square")
+	addr       = flag.String("addr", "localhost:50051", "the address to connnect to")
+	num1       = flag.Int("num1", defaultNum1, "interger one")
+	num2       = flag.Int("num2", defaultNum2, "interger two")
+	numPnd     = flag.Int("numPnd", defaultNumPnd, "interger Prime Number")
+	numSquare  = flag.Int("numSquare", defaultNumSquare, "interger number square")
+	numTimeout = flag.Int("numTimeout", defaultTimeOut, "timeout for deadline")
 )
 
 func main() {
@@ -40,6 +42,13 @@ func main() {
 		log.Fatalf("Did not connect %v", err)
 	}
 	defer conn.Close()
+
+	cli0 := pb.NewCalculatorServiceClient(conn)
+	tiO_1 := time.Duration(*numTimeout) * time.Second     // time break because on server sleep 3 seconds
+	tiO_2 := time.Duration(*numTimeout) * 5 * time.Second // time ok
+	callSumWithDeadline(cli0, tiO_1)
+	fmt.Println("deadline ---")
+	callSumWithDeadline(cli0, tiO_2)
 
 	cli1 := pb.NewCalculatorServiceClient(conn)
 	total(cli1)
@@ -59,6 +68,7 @@ func main() {
 	fmt.Println("---------------------------")
 	cli5 := pb.NewCalculatorServiceClient(conn)
 	callSquareRoot(cli5, int32(*numSquare))
+
 }
 
 func total(client pb.CalculatorServiceClient) {
@@ -70,6 +80,26 @@ func total(client pb.CalculatorServiceClient) {
 	})
 	if err != nil {
 		log.Fatalf("Could not sum: %v", err)
+	}
+	log.Printf("Total: %v", result.GetResult())
+}
+
+func callSumWithDeadline(client pb.CalculatorServiceClient, deadline time.Duration) {
+	ctx, cancel := context.WithTimeout(context.Background(), deadline)
+	defer cancel()
+
+	result, err := client.SumWithDealine(ctx, &pb.SumRequest{
+		Num1: int32(*num1),
+		Num2: int32((*num2)),
+	})
+	if err != nil {
+		if statusErr, ok := status.FromError(err); ok {
+			if statusErr.Code() == codes.DeadlineExceeded {
+				log.Println("calling sum with deadline DeadlineExceeded")
+			} else {
+				log.Printf("call sum with deadline api err %v", err)
+			}
+		}
 	}
 	log.Printf("Total: %v", result.GetResult())
 }
