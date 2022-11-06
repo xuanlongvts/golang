@@ -24,7 +24,10 @@ func CreateUser(db *gorm.DB, user *Users) error {
 
 // get users
 func GetUsers(db *gorm.DB, user *[]Users) (err error) {
-	err = db.Find(user).Error
+	// err = db.Find(user).Error
+	// err = db.Model(&Users{}).Limit(2).Find(user).Error
+	err = db.Limit(2).Find(user).Error
+
 	if err != nil {
 		return err
 	}
