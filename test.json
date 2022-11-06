@@ -1,0 +1,17 @@
+{
+	"user": {
+		"user_id": 66,
+		"user_code": "f5a23f8e-f839-448e-b20b-6808173f9722",
+		"first_name": "Long",
+		"last_name": "Le",
+		"email": "longlx@gmail.com",
+		"type": 10,
+		"status": "active",
+		"created_at": 1667287103,
+		"updated_at": 1667288752,
+		"updated_by": 38
+	},
+	"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njc0NDUxMDMsIlVzZXJJRCI6NjYsIkVtYWlsIjoibG9uZ2x4QGdtYWlsLmNvbSJ9.XvXMSyYbxlOTA-uK4Twxz6-R3pzanB9SJoSLE9Lvta4nyw8BiC8PL0zfX0ObhfsXpTLwKen565Hi35qVQIvwcK7u9ftBFcAPs1JeI6P4hPzC7yU0woMTDmQ1XQGUbpRvpD35MGrGKBt-YKGK-A4LfLZlj9vO3sgBbGFJhpi2aBfqcaz-0Ymsbq4FqFylgnl3Q5SOZ1XCD9ck_rqlD7Kjpb3yGIpUPc67NtcRLj_GieW4U_CiSq_xy1Nf5QSlf0cy7DjLiuRy6dcCsmQumS5tSWRI3PSIXLhG8Cwlf6IIpse_yvbzj8DBKy0uG5PxDhX5keZhwWHlfbALDPLLQH4MjiFbctCAUQnfIAo3bKb8UvBqksPw5nI3aJ2KonobdXjWg3_uZ8jd0ZaEqkj8vNPFdPJj08bJaeWEvNFnTgbZo35I7hzisWqUzUXIKTI9QtbK2MASylhK3m7rzalBFCl4GQdoHs9XSM5DO_gC0Sn-CLRW5gJkVobQyvH72B6YktTvVZBgC5ay2q9HiLzkaeuIlCzJeBan-biSBxyUdB1q9Q74lQ1NG8EEtkM8kOKymdi2nBTs51SfEgs3aO3-DRPY0R5QyII-hYp65kw77kqSdTpvIY10UegtcmI7TZJ0DL4-bIKiU-2mw2fzYnMN9Ha0MVkW_KqGD7pMJMyJMz-y7ZY"
+}
+
+SADD user::permission::66 "user::create"
