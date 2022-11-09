@@ -1,0 +1,9 @@
+1. brew install rabbitmq
+
+2. 
+The RabbitMQ server scripts and CLI tools are installed into the sbin directory under /usr/local/Cellar/rabbitmq/<version>/, which is accessible from /usr/local/opt/rabbitmq/sbin. Links to binaries have been created under /usr/local/sbin. In case that directory is not in PATH it's recommended to append it:
+
+    open zshrc: nano ~/.zshrc     export PATH=$PATH:/usr/local/sbin
+
+3. run
+brew services start rabbitmq
