@@ -51,7 +51,7 @@ func main() {
 	// 2. Bits
 	// ======================================
 	fmt.Println("Bits: ======================================")
-	fmt.Println("Amount bit: int8 = ", bits.OnesCount8(math.MaxUint8), ", " + "int16 = ", bits.OnesCount16(math.MaxUint16), ", int32 = ", bits.OnesCount32(math.MaxUint32), ", " +
+	fmt.Println("Amount bit: int8 = ", bits.OnesCount8(math.MaxUint8), ", "+"int16 = ", bits.Onescounter6(math.MaxUint16), ", int32 = ", bits.OnesCount32(math.MaxUint32), ", "+
 		"int64 = ", bits.OnesCount64(math.MaxUint64))
 
 	// uint
