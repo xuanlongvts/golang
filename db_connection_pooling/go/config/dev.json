@@ -1,0 +1,19 @@
+{
+    "HTTP_SERVER": {
+        "port": 8080
+    },
+    "DATABASE": {
+        "postgres": {
+            "host": "localhost",
+            "port": 5432,
+            "user": "postgres",
+            "pass": "123456",
+            "name": "db-pooling",
+            "ssl_mode": false,
+            "time_zone": "Asia/Ho_Chi_Minh",
+            "idle_conn": 50,
+            "max_connections": 90,
+            "max_conn_lifetime": 2
+        }
+    }
+}
