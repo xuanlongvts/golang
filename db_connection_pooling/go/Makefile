@@ -24,4 +24,10 @@ mig-down: # make mig-down 1
 	$(call run_migrate,down,1)
 # ///---------- End DB
 
+# benkmark
+benk-normal:
+	~/go/bin/go-wrk -c 200 -d 10 http://localhost:8080/products/normal
+
+benk-pooled:
+	~/go/bin/go-wrk -c 200 -d 10 http://localhost:8080/products/pooled
 
