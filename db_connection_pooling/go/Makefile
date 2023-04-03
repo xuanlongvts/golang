@@ -25,6 +25,8 @@ mig-down: # make mig-down 1
 # ///---------- End DB
 
 # benkmark
+# go install github.com/tsliwowicz/go-wrk@latest
+
 benk-normal:
 	~/go/bin/go-wrk -c 200 -d 10 http://localhost:8080/products/normal
 
