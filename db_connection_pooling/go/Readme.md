@@ -27,3 +27,8 @@
     -redir   Allow Redirects (Default false)
     -v       Print version details (Default false)
     ```
+2. Ref
+
+   https://viblo.asia/p/database-connection-pooling-tong-quan-va-implement-benchmark-38X4EN0oJN2?fbclid=IwAR1ho9LkvFqdnMgFRQIl3WK4I88OtnEBnwDSpx_usMPp2NbtsC3qzNohuk8&mibextid=S66gvF
+
+   https://viblo.asia/p/su-dung-sqldb-dung-cach-de-nang-cao-hieu-nang-cho-ung-dung-1VgZvrx2ZAw
