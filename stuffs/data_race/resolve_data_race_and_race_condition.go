@@ -38,3 +38,5 @@ func main() {
 		fmt.Println("res: ", res)
 	}
 }
+
+// https://stackoverflow.com/questions/39818254/goroutines-order-of-execution
