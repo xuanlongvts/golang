@@ -45,4 +45,4 @@ func main() {
 }
 
 // 1. go build		and then   ./di
-// 2. go run main.go wire_gen.go
+// 2. go run producer.go wire_gen.go
