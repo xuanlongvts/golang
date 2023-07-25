@@ -2,13 +2,7 @@
     ```
    docker compose up -d
     ```
-   
-2. Configuration
-    ``` 
-   copy bootstrap.servers=localhost:9092
-   ```
-
-3. Create Topic
+2. Create Topic
    ```
    docker compose exec broker \
       kafka-topics --create \
