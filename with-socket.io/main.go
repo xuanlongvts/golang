@@ -2,7 +2,8 @@ package main
 
 import (
 	socketio "github.com/googollee/go-socket.io"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"log"
 )
 
@@ -47,10 +48,15 @@ func main() {
 	defer server.Close()
 
 	e := echo.New()
-	e.HideBanner = true
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.OPTIONS, echo.HEAD, echo.GET, echo.POST, echo.PUT, echo.PATCH, echo.DELETE},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization, echo.HeaderAccessControlAllowOrigin},
+	}))
 
 	e.Static("/", "./asset")
-	e.Any("socket.io/", func(context echo.Context) error {
+	e.Any("/socket.io/", func(context echo.Context) error {
 		server.ServeHTTP(context.Response(), context.Request())
 		return nil
 	})
