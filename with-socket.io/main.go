@@ -2,13 +2,32 @@ package main
 
 import (
 	socketio "github.com/googollee/go-socket.io"
+	"github.com/googollee/go-socket.io/engineio"
+	"github.com/googollee/go-socket.io/engineio/transport"
+	"github.com/googollee/go-socket.io/engineio/transport/polling"
+	"github.com/googollee/go-socket.io/engineio/transport/websocket"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"log"
+	"net/http"
 )
 
+var allowOriginFunc = func(r *http.Request) bool {
+	return true
+}
+
 func main() {
-	server := socketio.NewServer(nil)
+	server := socketio.NewServer(&engineio.Options{
+		Transports: []transport.Transport{
+			&polling.Transport{
+				CheckOrigin: allowOriginFunc,
+			},
+			&websocket.Transport{
+				CheckOrigin: allowOriginFunc,
+			},
+		},
+	})
+
 	server.OnConnect("/", func(conn socketio.Conn) error {
 		conn.SetContext("")
 		log.Println("connected: ", conn.ID())
