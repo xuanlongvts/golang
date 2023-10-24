@@ -1,0 +1,1 @@
+Ref: https://blog.vietnamlab.vn/golang-datarace/
