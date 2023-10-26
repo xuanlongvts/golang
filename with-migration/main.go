@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golang-migrate/migrate/v4"
@@ -10,9 +11,12 @@ import (
 )
 
 func main() {
+	const defaultStep = 1
+	var step = flag.Int("step", defaultStep, "step must is a number")
+	flag.Parse()
+
 	db, err := sql.Open("mysql", "root:12345678@tcp(localhost:3306)/dev_db_auth?multiStatements=true")
 	if err != nil {
-
 		panic("Cannot connect to mysql")
 	}
 
@@ -21,11 +25,11 @@ func main() {
 		panic("mysql.WithInstance")
 	}
 
-	m, err := migrate.NewWithDatabaseInstance("file:///migrations", "mysql", driver)
+	m, err := migrate.NewWithDatabaseInstance("file://migrations", "mysql", driver)
 	if err != nil {
-		panic("migrate.NewWithDatabaseInstance")
+		panic("migrate.NewWithDatabaseInstance: " + err.Error())
 	}
 	fmt.Println("---> m: ", m)
 
-	m.Steps(1)
+	m.Steps(*step)
 }
