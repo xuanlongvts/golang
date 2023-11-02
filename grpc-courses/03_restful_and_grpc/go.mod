@@ -3,6 +3,7 @@ module grpc-combine-rest
 go 1.21.3
 
 require (
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0
 	github.com/rs/zerolog v1.31.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20231030173426-d783a09b4405
 	google.golang.org/grpc v1.59.0
