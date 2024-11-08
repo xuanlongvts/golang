@@ -67,16 +67,16 @@ var file_services_auth_proto_rawDesc = []byte{
 }
 
 var file_services_auth_proto_goTypes = []interface{}{
-	(*CreateUserRequest)(nil),  // 0: pb.CreateUserRequest
-	(*LoginUserRequest)(nil),   // 1: pb.LoginUserRequest
-	(*CreateUserResponse)(nil), // 2: pb.CreateUserResponse
-	(*LoginUserResponse)(nil),  // 3: pb.LoginUserResponse
+	(*CreateUserRequest)(nil),  // 0: proto.CreateUserRequest
+	(*LoginUserRequest)(nil),   // 1: proto.LoginUserRequest
+	(*CreateUserResponse)(nil), // 2: proto.CreateUserResponse
+	(*LoginUserResponse)(nil),  // 3: proto.LoginUserResponse
 }
 var file_services_auth_proto_depIdxs = []int32{
-	0, // 0: pb.AuthService.CreateUser:input_type -> pb.CreateUserRequest
-	1, // 1: pb.AuthService.LoginUser:input_type -> pb.LoginUserRequest
-	2, // 2: pb.AuthService.CreateUser:output_type -> pb.CreateUserResponse
-	3, // 3: pb.AuthService.LoginUser:output_type -> pb.LoginUserResponse
+	0, // 0: proto.AuthService.CreateUser:input_type -> proto.CreateUserRequest
+	1, // 1: proto.AuthService.LoginUser:input_type -> proto.LoginUserRequest
+	2, // 2: proto.AuthService.CreateUser:output_type -> proto.CreateUserResponse
+	3, // 3: proto.AuthService.LoginUser:output_type -> proto.LoginUserResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

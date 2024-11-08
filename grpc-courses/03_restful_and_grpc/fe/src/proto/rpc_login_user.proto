@@ -5,7 +5,7 @@ package pb;
 import "user.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "grpc-combine-rest/pb";
+option go_package = "grpc-combine-rest/proto";
 
 message LoginUserRequest {
   string user_name = 1;

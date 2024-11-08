@@ -4,7 +4,7 @@ package pb;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package="grpc-combine-rest/pb";
+option go_package="grpc-combine-rest/proto";
 
 message User {
   string user_name = 1;

@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AuthService_CreateUser_FullMethodName = "/pb.AuthService/CreateUser"
-	AuthService_LoginUser_FullMethodName  = "/pb.AuthService/LoginUser"
+	AuthService_CreateUser_FullMethodName = "/proto.AuthService/CreateUser"
+	AuthService_LoginUser_FullMethodName  = "/proto.AuthService/LoginUser"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -129,7 +129,7 @@ func _AuthService_LoginUser_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.AuthService",
+	ServiceName: "proto.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

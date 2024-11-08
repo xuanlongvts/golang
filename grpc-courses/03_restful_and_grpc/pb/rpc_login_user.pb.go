@@ -214,15 +214,15 @@ func file_rpc_login_user_proto_rawDescGZIP() []byte {
 
 var file_rpc_login_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_rpc_login_user_proto_goTypes = []interface{}{
-	(*LoginUserRequest)(nil),      // 0: pb.LoginUserRequest
-	(*LoginUserResponse)(nil),     // 1: pb.LoginUserResponse
-	(*User)(nil),                  // 2: pb.User
+	(*LoginUserRequest)(nil),      // 0: proto.LoginUserRequest
+	(*LoginUserResponse)(nil),     // 1: proto.LoginUserResponse
+	(*User)(nil),                  // 2: proto.User
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_rpc_login_user_proto_depIdxs = []int32{
-	2, // 0: pb.LoginUserResponse.user:type_name -> pb.User
-	3, // 1: pb.LoginUserResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
-	3, // 2: pb.LoginUserResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
+	2, // 0: proto.LoginUserResponse.user:type_name -> proto.User
+	3, // 1: proto.LoginUserResponse.access_token_expires_at:type_name -> google.protobuf.Timestamp
+	3, // 2: proto.LoginUserResponse.refresh_token_expires_at:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

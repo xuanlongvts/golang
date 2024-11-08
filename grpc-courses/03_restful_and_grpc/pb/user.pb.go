@@ -139,12 +139,12 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_user_proto_goTypes = []interface{}{
-	(*User)(nil),                  // 0: pb.User
+	(*User)(nil),                  // 0: proto.User
 	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_user_proto_depIdxs = []int32{
-	1, // 0: pb.User.password_changed_at:type_name -> google.protobuf.Timestamp
-	1, // 1: pb.User.created_at:type_name -> google.protobuf.Timestamp
+	1, // 0: proto.User.password_changed_at:type_name -> google.protobuf.Timestamp
+	1, // 1: proto.User.created_at:type_name -> google.protobuf.Timestamp
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

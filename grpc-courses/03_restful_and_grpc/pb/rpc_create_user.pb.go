@@ -173,12 +173,12 @@ func file_rpc_create_user_proto_rawDescGZIP() []byte {
 
 var file_rpc_create_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_rpc_create_user_proto_goTypes = []interface{}{
-	(*CreateUserRequest)(nil),  // 0: pb.CreateUserRequest
-	(*CreateUserResponse)(nil), // 1: pb.CreateUserResponse
-	(*User)(nil),               // 2: pb.User
+	(*CreateUserRequest)(nil),  // 0: proto.CreateUserRequest
+	(*CreateUserResponse)(nil), // 1: proto.CreateUserResponse
+	(*User)(nil),               // 2: proto.User
 }
 var file_rpc_create_user_proto_depIdxs = []int32{
-	2, // 0: pb.CreateUserResponse.user:type_name -> pb.User
+	2, // 0: proto.CreateUserResponse.user:type_name -> proto.User
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
